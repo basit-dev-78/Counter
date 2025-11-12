@@ -2,68 +2,209 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    #counter_main {
-        height: 70vh;
-        width: 99vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 10px;
-        padding-top: 50px;
-        font-size: 30px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
     }
-    #main2{
-        height: 30vh;
-        width: 99vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* flex-direction: column; */
-        gap: 10px;
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top left, #ff9f43, #6c5ce7 40%, #111 90%);
+      color: #fff;
+    }
+
+    #counter_main {
+      width: 90vw;
+      max-width: 420px;
+      padding: 30px 24px 26px;
+      border-radius: 24px;
+      background: rgba(10, 10, 20, 0.85);
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      backdrop-filter: blur(14px);
+    }
+
+    #counter_main h1 {
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #counter_main h1::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fdcb6e, #e17055);
+      box-shadow: 0 0 10px #fdcb6e;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #dfe6e9;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    .count-wrapper {
+      margin-top: 8px;
+      margin-bottom: 6px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     #num {
-        font-size: 100px;
-        font-weight: 900;
+      font-size: 68px;
+      font-weight: 700;
+      line-height: 1;
+      padding: 14px 32px;
+      border-radius: 20px;
+      background: radial-gradient(circle at top, #2d3436, #111319);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 12px 30px rgba(0, 0, 0, 0.6);
+      min-width: 140px;
+      text-align: center;
     }
-</style>
+
+    #main2 {
+      margin-top: 10px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+        color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    button:active {
+      transform: scale(0.96);
+      box-shadow: none;
+    }
+
+    /* Button styles */
+    .btn-decrease {
+      background: rgba(255, 71, 87, 0.12);
+      color: #ff6b6b;
+      box-shadow: 0 6px 14px rgba(255, 99, 132, 0.25);
+      border: 1px solid rgba(255, 99, 132, 0.25);
+    }
+
+    .btn-decrease:hover {
+      background: rgba(255, 71, 87, 0.22);
+    }
+
+    .btn-reset {
+      background: rgba(223, 230, 233, 0.12);
+      color: #dfe6e9;
+      box-shadow: 0 6px 14px rgba(149, 165, 166, 0.25);
+      border: 1px solid rgba(149, 165, 166, 0.35);
+    }
+
+    .btn-reset:hover {
+      background: rgba(223, 230, 233, 0.22);
+    }
+
+    .btn-increase {
+      background: linear-gradient(135deg, #00b894, #00cec9);
+      color: #0c0f13;
+      box-shadow: 0 8px 18px rgba(0, 184, 148, 0.45);
+    }
+
+    .btn-increase:hover {
+      background: linear-gradient(135deg, #00cec9, #55efc4);
+    }
+
+    @media (max-width: 480px) {
+      #counter_main {
+        padding: 24px 18px 22px;
+        border-radius: 20px;
+      }
+
+      #num {
+        font-size: 52px;
+        padding: 10px 22px;
+        min-width: 120px;
+      }
+
+      button {
+        flex: 1 1 calc(50% - 10px);
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
 
 <body>
-    <div id="counter_main">
-        <h1>counter</h1>
-        <p id="num">0</p>
-        <div id="main2">
-            <button onclick="decrease()">Decrease</button>
-            <button onclick="reset()">Reset</button>
-            <button onclick="increase()">Increase</button>
-        </div>
+  <div id="counter_main">
+    <h1>Counter</h1>
+    <p class="subtitle">Simple, clean counter with modern UI</p>
+
+    <div class="count-wrapper">
+      <p id="num">0</p>
     </div>
-    <script>
-        function decrease () {
-  const count = document.getElementById("num");
-  let value = parseInt(count.innerHTML) ;
-  count.innerText = value -1;
 
-}
-function reset () {
-  const count = document.getElementById("num");
-  let value = parseInt(count.innerHTML) ;
-  count.innerText = 0;
+    <div id="main2">
+      <button class="btn-decrease" onclick="decrease()">− Decrease</button>
+      <button class="btn-reset" onclick="resetCount()">Reset</button>
+      <button class="btn-increase" onclick="increase()">+ Increase</button>
+    </div>
+  </div>
 
-}
-function increase () {
-  const count = document.getElementById("num");
-  let value = parseInt(count.innerHTML) ;
-  count.innerText = value +1;
+  <script>
+    function decrease() {
+      const count = document.getElementById("num");
+      let value = parseInt(count.innerHTML);
+      count.innerText = value - 1;
+    }
 
-}
-    </script>
+    function resetCount() {
+      const count = document.getElementById("num");
+      count.innerText = 0;
+    }
+
+    function increase() {
+      const count = document.getElementById("num");
+      let value = parseInt(count.innerHTML);
+      count.innerText = value + 1;
+    }
+  </script>
 </body>
 
 </html>
