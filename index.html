@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #counter_main {
+        height: 70vh;
+        width: 99vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 50px;
+        font-size: 30px;
+    }
+    #main2{
+        height: 30vh;
+        width: 99vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column; */
+        gap: 10px;
+    }
+
+    #num {
+        font-size: 100px;
+        font-weight: 900;
+    }
+</style>
+
+<body>
+    <div id="counter_main">
+        <h1>counter</h1>
+        <p id="num">0</p>
+        <div id="main2">
+            <button onclick="decrease()">Decrease</button>
+            <button onclick="reset()">Reset</button>
+            <button onclick="increase()">Increase</button>
+        </div>
+    </div>
+    <script>
+        function decrease () {
+  const count = document.getElementById("num");
+  let value = parseInt(count.innerHTML) ;
+  count.innerText = value -1;
+
+}
+function reset () {
+  const count = document.getElementById("num");
+  let value = parseInt(count.innerHTML) ;
+  count.innerText = 0;
+
+}
+function increase () {
+  const count = document.getElementById("num");
+  let value = parseInt(count.innerHTML) ;
+  count.innerText = value +1;
+
+}
+    </script>
+</body>
+
+</html>
